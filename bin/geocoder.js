@@ -1,11 +1,12 @@
 #!/usr/bin/env node
 
 var program  = require('commander'),
-  NodeGeocoder = require('node-geocoder');
+  GeocoderFactory = require('node-geocoder');
 
 program
-  .version('1.0.0')
-  .option('-p, --provider [value]]', 'Geocoder provider (default to google)', 'google');
+  .version('2.12.0')
+  .option('-p, --provider [value]', 'Geocoder provider (default to google)', 'google')
+  .option('-l, --language [value]', 'Language (default to ja)', 'ja');
 
 // Crappy hack
 program.executables = true;
@@ -15,7 +16,10 @@ program
   .description('geocode given value')
   .action(function(value){
     try {
-      var geocoder = NodeGeocoder(program.provider);
+      var extra = {
+        language: program.language
+      };
+      var geocoder = GeocoderFactory.getGeocoder(program.provider, null, extra);
     } catch(e) {
       console.error(e.message);
       process.exit(1);
@@ -35,7 +39,10 @@ program
   .description('reverse geocode given value')
   .action(function(lat, long){
     try {
-      var geocoder = NodeGeocoder(program.provider);
+      var extra = {
+        language: program.language
+      };
+      var geocoder = GeocoderFactory.getGeocoder(program.provider, null, extra);
     } catch(e) {
       console.error(e.message);
       process.exit(1);

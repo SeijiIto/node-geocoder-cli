@@ -29,5 +29,6 @@ Usage: index [options] [command]
 
     -h, --help               output usage information
     -V, --version            output the version number
-    -p, --provider [value]]  Geocoder provider (default to google)
+    -p, --provider [value]   Geocoder provider (default to google)
+    -l, --language [value]   Language (default to ja)
 ```
