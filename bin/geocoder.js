@@ -6,6 +6,7 @@ var program  = require('commander'),
 program
   .version('2.12.0')
   .option('-p, --provider [value]', 'Geocoder provider (default to google)', 'google')
+  .option('-j, --json', 'Output raw json format')
   .option('-l, --language [value]', 'Language (default to ja)', 'ja');
 
 // Crappy hack
@@ -27,7 +28,11 @@ program
 
     geocoder.geocode(value)
       .then(function(results) {
-        console.log(results);
+        if (program.json && program.json != undefined) {
+          console.log("%j", results);
+          return;
+        }
+        console.log("%j", results);
       }, function(err) {
         console.error(err.message);
         process.exit(1);
@@ -50,6 +55,10 @@ program
 
     geocoder.reverse({lat:lat, lon:long})
       .then(function(results) {
+        if (program.json && program.json != undefined) {
+          console.log("%j", results);
+          return;
+        }
         console.log(results);
       }, function(err) {
         console.error(err.message);
@@ -58,5 +67,3 @@ program
   });
 
 program.parse(process.argv);
-
-

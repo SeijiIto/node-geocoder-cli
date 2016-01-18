@@ -30,5 +30,6 @@ Usage: index [options] [command]
     -h, --help               output usage information
     -V, --version            output the version number
     -p, --provider [value]   Geocoder provider (default to google)
+    -j, --json               Output raw json format
     -l, --language [value]   Language (default to ja)
 ```
