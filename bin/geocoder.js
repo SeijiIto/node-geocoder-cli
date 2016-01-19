@@ -32,7 +32,7 @@ program
           console.log("%j", results);
           return;
         }
-        console.log("%j", results);
+        console.log(results);
       }, function(err) {
         console.error(err.message);
         process.exit(1);
@@ -67,3 +67,5 @@ program
   });
 
 program.parse(process.argv);
+
+
