@@ -7,7 +7,8 @@ program
   .version('2.12.0')
   .option('-p, --provider [value]', 'Geocoder provider (default to google)', 'google')
   .option('-j, --json', 'Output raw json format')
-  .option('-l, --language [value]', 'Language (default to ja)', 'ja');
+  .option('-l, --language [value]', 'Language (default to ja)', 'ja')
+  .option('-k, --key [value]', 'Google API Key');
 
 // Crappy hack
 program.executables = true;
@@ -18,7 +19,8 @@ program
   .action(function(value){
     try {
       var extra = {
-        language: program.language
+        language: program.language,
+        apiKey: program.key
       };
       var geocoder = GeocoderFactory.getGeocoder(program.provider, null, extra);
     } catch(e) {
@@ -45,7 +47,8 @@ program
   .action(function(lat, long){
     try {
       var extra = {
-        language: program.language
+        language: program.language,
+        apiKey: program.key
       };
       var geocoder = GeocoderFactory.getGeocoder(program.provider, null, extra);
     } catch(e) {
