@@ -18,11 +18,12 @@ program
   .description('geocode given value')
   .action(function(value){
     try {
-      var extra = {
+      var options = {
+        provider: program.provider,
         language: program.language,
         apiKey: program.key
       };
-      var geocoder = GeocoderFactory.getGeocoder(program.provider, null, extra);
+      var geocoder = GeocoderFactory(options);
     } catch(e) {
       console.error(e.message);
       process.exit(1);
@@ -46,11 +47,12 @@ program
   .description('reverse geocode given value')
   .action(function(lat, long){
     try {
-      var extra = {
+      var options = {
+        provider: program.provider,
         language: program.language,
         apiKey: program.key
       };
-      var geocoder = GeocoderFactory.getGeocoder(program.provider, null, extra);
+      var geocoder = GeocoderFactory(options);
     } catch(e) {
       console.error(e.message);
       process.exit(1);
@@ -70,5 +72,3 @@ program
   });
 
 program.parse(process.argv);
-
-
